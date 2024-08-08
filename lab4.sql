@@ -68,6 +68,7 @@ insert into part(pno,pname,pcolor) values
 
 create table copy_part(pno int,pname varchar(20),pcolor varchar(10))
 
+--program
 
 set serverouput on
 declare
