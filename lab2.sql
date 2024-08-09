@@ -28,7 +28,7 @@ create table copy_shipment(sid int,pno int,quan int);
 
 set serveroutput on
 declare
-cusrsor cur is delect * from shipment;
+cusrsor cur is select * from shipment;
 counter int;
 rows shipment%rowtype;
 begin
