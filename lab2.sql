@@ -28,19 +28,13 @@ create table copy_shipment(sid int,pno int,quan int);
 
 set serveroutput on
 declare
-cusrsor cur is select * from shipment;
-counter int;
-rows shipment%rowtype;
+cur_partno shipment.pno%type:=4;
 begin
-    open cur;
-    loop
-        fetch cur into rows;
-        exit when cur%notfound;
-        insert into copy_shipment
-        values(rows.sid,rows.pno,rows.quan);
-    end loop;
-    close cur;
-    counter:= cur%rowcount;
-    dbms_output.put_line(counter||' number of rows have been inserted');
+    insert into copy_shipment
+    select * from shipment where pno=cur_partno;
+    dbms_output.put_line(sql%rowcount ||' number of rows has be cpoied');
+exception
+        when others then
+            dbms_ouput.put_line(' ERROR '|| sqlerrm);
 end;
 /
